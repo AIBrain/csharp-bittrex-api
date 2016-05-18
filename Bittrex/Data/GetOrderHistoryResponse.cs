@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Bittrex
+﻿namespace Bittrex.Data
 {
+    using System.Collections.Generic;
+
     public class GetOrderHistoryResponse: List<CompletedOrder>
     {
     }

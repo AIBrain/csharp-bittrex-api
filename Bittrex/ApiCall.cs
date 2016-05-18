@@ -1,23 +1,21 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Bittrex {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Net;
+    using System.Text;
+    using Newtonsoft.Json;
+
     public class ApiCall {
-        private readonly Boolean _simulate;
+        private Boolean Simulate { get; }
 
         public ApiCall( Boolean simulate ) {
-            this._simulate = simulate;
+            this.Simulate = simulate;
         }
 
         public T CallWithJsonResponse<T>( String uri, Boolean hasEffects, params Tuple<String, String>[] headers ) {
-            if ( this._simulate && hasEffects ) {
+            if ( this.Simulate && hasEffects ) {
                 Debug.WriteLine( "(simulated)" + GetCallDetails( uri ) );
                 return default( T );
             }
@@ -30,19 +28,22 @@ namespace Bittrex {
 
             using ( var response = request.GetResponse() as HttpWebResponse ) {
                 if ( null == response ) {
-                    return default ( T );
+                    throw new NullReferenceException( nameof( response ) );
                 }
                 if ( response.StatusCode == HttpStatusCode.OK ) {
-                    using ( var sr = new StreamReader( response.GetResponseStream() ) ) {
+                    var responseStream = response.GetResponseStream();
+                    if ( responseStream == null ) {
+                        throw new NullReferenceException( nameof( responseStream ) );
+                    }
+                    using ( var sr = new StreamReader( responseStream ) ) {
                         var content = sr.ReadToEnd();
-                        var jsonResponse = JsonConvert.DeserializeObject<ApiCallResponse<T>>( content );
+                        var jsonResponse = JsonConvert.DeserializeObject< ApiCallResponse< T > >( content );
 
                         if ( jsonResponse.success ) {
                             return jsonResponse.result;
                         }
-                        else {
-                            throw new Exception( jsonResponse.message.ToString() + "Call Details=" + GetCallDetails( uri ) );
-                        }
+
+                        throw new Exception( jsonResponse.message + "Call Details=" + GetCallDetails( uri ) );
                     }
                 }
                 else {
@@ -52,22 +53,26 @@ namespace Bittrex {
         }
 
         private static String GetCallDetails( String uri ) {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             var u = new Uri( uri );
             sb.Append( u.AbsolutePath );
-            if ( u.Query.StartsWith( "?" ) ) {
-                var queryParameters = u.Query.Substring( 1 ).Split( '&' );
-                foreach ( var p in queryParameters ) {
-                    if ( !( p.ToLower().StartsWith( "api" ) || p.ToLower().StartsWith( "nonce" ) ) ) {
-                        var kv = p.Split( '=' );
-                        if ( kv.Length == 2 ) {
-                            if ( sb.Length != 0 ) {
-                                sb.Append( ", " );
-                            }
+            if ( !u.Query.StartsWith( "?" ) ) {
+                return sb.ToString();
+            }
 
-                            sb.Append( kv[ 0 ] ).Append( " = " ).Append( kv[ 1 ] );
-                        }
+            var queryParameters = u.Query.Substring( 1 ).Split( '&' );
+            foreach ( var p in queryParameters ) {
+                var lowerP = p.ToLower();
+                if ( lowerP.StartsWith( "api" ) || lowerP.StartsWith( "nonce" ) ) {
+                    continue;
+                }
+                var kv = p.Split( '=' );
+                if ( kv.Length == 2 ) {
+                    if ( sb.Length != 0 ) {
+                        sb.Append( ", " );
                     }
+
+                    sb.Append( kv[ 0 ] ).Append( " = " ).Append( kv[ 1 ] );
                 }
             }
             return sb.ToString();

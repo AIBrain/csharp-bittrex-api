@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Bittrex
 {
+    using System;
+    using System.Security;
+
     public class ExchangeContext
     {
-        public String ApiKey { get; set; }
-        public String Secret { get; set; }
+        public SecureString ApiKey { get; set; }
+        public SecureString Secret { get; set; }
         public String QuoteCurrency  { get; set; }
         public Boolean Simulate { get; set; }
     }
