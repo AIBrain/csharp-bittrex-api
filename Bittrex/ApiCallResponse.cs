@@ -8,8 +8,8 @@ namespace Bittrex
 {
     class ApiCallResponse<T>
     {
-        public bool success { get; set; }
-        public string message { get; set; }
+        public Boolean success { get; set; }
+        public String message { get; set; }
         public T result { get; set; }
     }
 }

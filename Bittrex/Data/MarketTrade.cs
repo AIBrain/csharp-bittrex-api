@@ -8,11 +8,11 @@ namespace Bittrex
 {
     public class MarketTrade
     {
-        public int Id { get; set; }
+        public Int32 Id { get; set; }
         public DateTime TimeStamp { get; set; }
-        public decimal Quantity { get; set; }
-        public decimal Price { get; set; }
-        public decimal Total { get; set; }
+        public Decimal Quantity { get; set; }
+        public Decimal Price { get; set; }
+        public Decimal Total { get; set; }
         public FillType FillType { get; set; }
         public OrderType OrderType { get; set; }
     }

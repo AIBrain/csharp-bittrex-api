@@ -9,15 +9,15 @@ namespace Bittrex
     public interface IExchange
     {
         void Initialise(ExchangeContext context);
-        AccountBalance GetBalance(string market);
+        AccountBalance GetBalance(String market);
         GetBalancesResponse GetBalances();
-        decimal CalculateMinimumOrderQuantity(string market, decimal price);
+        Decimal CalculateMinimumOrderQuantity(String market, Decimal price);
         dynamic GetMarkets();
-        dynamic GetTicker(string market);
-        GetOpenOrdersResponse GetOpenOrders(string market);        
-        OrderResponse PlaceBuyOrder(string market, decimal quantity, decimal price);
-        OrderResponse PlaceSellOrder(string market, decimal quantity, decimal price);
-        void CancelOrder(string uuid);
+        dynamic GetTicker(String market);
+        GetOpenOrdersResponse GetOpenOrders(String market);        
+        OrderResponse PlaceBuyOrder(String market, Decimal quantity, Decimal price);
+        OrderResponse PlaceSellOrder(String market, Decimal quantity, Decimal price);
+        void CancelOrder(String uuid);
 
         /// <summary>
         /// Used to retrieve the orderbook for a given market
@@ -26,7 +26,7 @@ namespace Bittrex
         /// <param name="type">The type of orderbook to return.</param>
         /// <param name="depth">How deep of an order book to retrieve. Max is 50</param>
         /// <returns></returns>
-        GetOrderBookResponse GetOrderBook(string market, OrderBookType type, int depth = 20);
+        GetOrderBookResponse GetOrderBook(String market, OrderBookType type, Int32 depth = 20);
 
         /// <summary>
         /// Used to retrieve the latest trades that have occured for a specific market.
@@ -34,10 +34,10 @@ namespace Bittrex
         /// <param name="market"></param>
         /// <param name="count">a number between 1-50 for the number of entries to return</param>
         /// <returns></returns>
-        GetMarketHistoryResponse GetMarketHistory(string market, int count = 20);
+        GetMarketHistoryResponse GetMarketHistory(String market, Int32 count = 20);
 
-        GetMarketSummaryResponse GetMarketSummary(string market);
+        GetMarketSummaryResponse GetMarketSummary(String market);
 
-        GetOrderHistoryResponse GetOrderHistory(string market, int count = 10);
+        GetOrderHistoryResponse GetOrderHistory(String market, Int32 count = 10);
     }
 }

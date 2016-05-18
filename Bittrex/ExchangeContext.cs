@@ -8,9 +8,9 @@ namespace Bittrex
 {
     public class ExchangeContext
     {
-        public string ApiKey { get; set; }
-        public string Secret { get; set; }
-        public string QuoteCurrency  { get; set; }
-        public bool Simulate { get; set; }
+        public String ApiKey { get; set; }
+        public String Secret { get; set; }
+        public String QuoteCurrency  { get; set; }
+        public Boolean Simulate { get; set; }
     }
 }

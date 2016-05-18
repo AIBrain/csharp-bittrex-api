@@ -8,7 +8,7 @@ namespace Bittrex
 {
     public class OrderEntry
     {
-        public decimal Quantity { get; set; }
-        public decimal Rate { get; set; }
+        public Decimal Quantity { get; set; }
+        public Decimal Rate { get; set; }
     }
 }

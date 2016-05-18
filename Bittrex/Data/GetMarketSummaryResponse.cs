@@ -8,19 +8,19 @@ namespace Bittrex
 {
     public class GetMarketSummaryResponse
     {
-        public string MarketName { get; set; }
-        public decimal High { get; set; }
-        public decimal Low { get; set; }
-        public decimal Volume { get; set; }
-        public decimal Last { get; set; }
-        public decimal BaseVolume { get; set; }
+        public String MarketName { get; set; }
+        public Decimal High { get; set; }
+        public Decimal Low { get; set; }
+        public Decimal Volume { get; set; }
+        public Decimal Last { get; set; }
+        public Decimal BaseVolume { get; set; }
         public DateTime TimeStamp { get; set; }
-        public decimal Bid { get; set; }
-        public decimal Ask { get; set; }
-        public int OpenBuyOrders { get; set; }
-        public int OpenSellOrders { get; set; }
-        public decimal PrevDay { get; set; }
+        public Decimal Bid { get; set; }
+        public Decimal Ask { get; set; }
+        public Int32 OpenBuyOrders { get; set; }
+        public Int32 OpenSellOrders { get; set; }
+        public Decimal PrevDay { get; set; }
         public DateTime Created { get; set; }
-        public string DisplayMarketName { get; set; }
+        public String DisplayMarketName { get; set; }
     }
 }

@@ -8,22 +8,22 @@ namespace Bittrex
 {
     public class OpenOrder
     {
-		public string Uuid{get;set;}
-		public string OrderUuid{get;set;}
-		public string Exchange{get;set;}
+		public String Uuid{get;set;}
+		public String OrderUuid{get;set;}
+		public String Exchange{get;set;}
 		public OpenOrderType OrderType{get;set;}
-		public decimal Quantity{get;set;}
-		public decimal QuantityRemaining{get;set;}
-		public decimal Limit{get;set;}
-		public decimal CommissionPaid{get;set;}
-		public decimal Price{get;set;}
+		public Decimal Quantity{get;set;}
+		public Decimal QuantityRemaining{get;set;}
+		public Decimal Limit{get;set;}
+		public Decimal CommissionPaid{get;set;}
+		public Decimal Price{get;set;}
         //public decimal? PricePerUnit{get;set;}
 		public DateTime Opened{get;set;}
 		//public string Closed" : null,
-		public bool CancelInitiated{get;set;}
-		public bool ImmediateOrCancel{get;set;}
-		public bool IsConditional{get;set;}
-		public string Condition{get;set;}
-        public string ConditionTarget { get; set; }
+		public Boolean CancelInitiated{get;set;}
+		public Boolean ImmediateOrCancel{get;set;}
+		public Boolean IsConditional{get;set;}
+		public String Condition{get;set;}
+        public String ConditionTarget { get; set; }
     }
 }

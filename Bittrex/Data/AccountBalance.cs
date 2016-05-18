@@ -8,12 +8,12 @@ namespace Bittrex
 {
     public class AccountBalance
     {
-        public string Currency { get; set; }
-        public decimal Balance { get; set; }
-        public decimal Available { get; set; }
-        public decimal Pending { get; set; }
-        public string CryptoAddress { get; set; }
-        public bool Requested { get; set; }
-        public string Uuid { get; set; }
+        public String Currency { get; set; }
+        public Decimal Balance { get; set; }
+        public Decimal Available { get; set; }
+        public Decimal Pending { get; set; }
+        public String CryptoAddress { get; set; }
+        public Boolean Requested { get; set; }
+        public String Uuid { get; set; }
     }
 }

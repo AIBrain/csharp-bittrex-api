@@ -8,6 +8,6 @@ namespace Bittrex
 {
     public class OrderResponse
     {
-        public string uuid { get; set; }
+        public String uuid { get; set; }
     }
 }
